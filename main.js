@@ -16,7 +16,7 @@ fetch(wallUrlEndpoint)
 
 function renderCard(photo) {
     return`
-    <div class="col-4 mt-5">
+    <div class="col-12 col-md-6 col-lg-4 mt-5 d-flex justify-content-center">
         <div class="case border p-3 position-relative">
             <img src="${photo.url}" class="card-img-top" alt="first image">
             <img src="./img/pin.svg" alt="" class="pin position-absolute">
