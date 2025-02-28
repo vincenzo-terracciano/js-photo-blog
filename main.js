@@ -2,34 +2,46 @@
 const wallEl = document.querySelector(".wall .row")
 const wallUrlEndpoint = "https://lanciweb.github.io/demo/api/pictures/"
 
+/* fetch the data from url */
 fetch(wallUrlEndpoint)
 .then(response => response.json())
 .then(polaroid => {
     console.log(polaroid);
     
-    polaroid.forEach(photo => {
-        
-        const {url, date, title} = photo
-        console.log(photo);
+    displayPolaroid(polaroid)
+    
+})
+.catch(err => console.error(err))
 
-        const markup = `
-        <div class="col-4 mt-5">
-            <div class="case border p-3 position-relative">
-                <img src="${url}" class="card-img-top" alt="first image">
-                <img src="./img/pin.svg" alt="" class="pin position-absolute">
-                <div class="card-bottom mt-3">
-                    <p class="card-text ">
-                        ${date}
-                    </p>
-                    <strong class="title-photo">
-                        ${title}
-                    </strong>
-                 </div>
+
+function renderCard(photo) {
+    return`
+    <div class="col-4 mt-5">
+        <div class="case border p-3 position-relative">
+            <img src="${photo.url}" class="card-img-top" alt="first image">
+            <img src="./img/pin.svg" alt="" class="pin position-absolute">
+            <div class="card-bottom mt-3">
+                <div class="card-text ">
+                    ${photo.date}
+                </div>
+                <strong class="title-photo">
+                    ${photo.title}
+                </strong>
             </div>
         </div>
-        `
+    </div>
+    `
+}
+
+
+function displayPolaroid(polaroid) {
+
+    polaroid.forEach(photo => {
+        console.log(photo);
+        
+        const markup = renderCard(photo)
+
         wallEl.insertAdjacentHTML("beforeend", markup)
 
     })
-})
-.catch(err => console.error(err))
+}
