@@ -2,6 +2,7 @@
 const wallEl = document.querySelector(".wall .row")
 const overlayEl = document.querySelector(".overlay")
 const buttonEl = document.querySelector(".btn")
+const overlayImage = document.querySelector(".overlay img")
 
 const wallUrlEndpoint = "https://lanciweb.github.io/demo/api/pictures/"
 
@@ -52,6 +53,9 @@ function displayPolaroid(polaroid) {
     const cardEl = document.querySelectorAll(".case")
     cardEl.forEach((card) => {
         card.addEventListener("click", function(){
+            const cardImage = card.querySelector("img.card-img-top").src;
+            overlayImage.src = cardImage 
+
             overlayOnOff()
         })
     })
