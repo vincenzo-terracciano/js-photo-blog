@@ -1,5 +1,8 @@
 /* select DOM elements */
 const wallEl = document.querySelector(".wall .row")
+const overlayEl= document.querySelector(".overlay")
+const cardEl = document.querySelectorAll(".case")
+
 const wallUrlEndpoint = "https://lanciweb.github.io/demo/api/pictures/"
 
 /* fetch the data from url */
@@ -9,6 +12,7 @@ fetch(wallUrlEndpoint)
     console.log(polaroid);
     
     displayPolaroid(polaroid)
+    
     
 })
 .catch(err => console.error(err))
@@ -45,3 +49,7 @@ function displayPolaroid(polaroid) {
 
     })
 }
+
+cardEl.addEventListener("click", function(){
+    overlayEl.classList.remove("d-none")
+})
